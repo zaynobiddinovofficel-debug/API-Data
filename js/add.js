@@ -6,13 +6,10 @@ import {
 } from './html.js';
 import { ui } from './ui.js';
 
-// localStorage dan olish
 export let localTodos = JSON.parse(localStorage.getItem('localTodos') || '[]');
 
-// Boshlang‘ich UI
 ui(localTodos);
 
-/* ADD */
 elAddForm.addEventListener('submit', (evt) => {
   evt.preventDefault();
 
@@ -43,7 +40,6 @@ elAddForm.addEventListener('submit', (evt) => {
   showSuccess('Todo qo‘shildi!');
 });
 
-/* TOAST ERROR */
 function showError(text) {
   const clone = elToastTemplate.content.cloneNode(true);
   clone.querySelector('span').innerText = text;
@@ -54,7 +50,6 @@ function showError(text) {
   }, 1500);
 }
 
-/* TOAST SUCCESS */
 function showSuccess(text) {
   const clone = elSuccessTemplate.content.cloneNode(true);
   clone.querySelector('span').innerText = text;

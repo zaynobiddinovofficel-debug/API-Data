@@ -7,20 +7,17 @@ const modal = document.getElementById('my_modal_3');
 let state = [];
 let editId = null;
 
-/* STATE */
 function stateChanger(data) {
   state = data;
   ui(state);
 }
 
-/* GET */
 loader(true);
 fetch('https://json-api.uz/api/project/muhammaddiyor-afandim/todos')
   .then(res => res.json())
   .then(res => stateChanger(res.data))
   .finally(() => loader(false));
 
-/* ADD + EDIT */
 elAddForm.addEventListener('submit', (e) => {
   e.preventDefault();
 
@@ -38,7 +35,6 @@ elAddForm.addEventListener('submit', (e) => {
   elAddForm.reset();
 });
 
-/* ADD */
 function addTodo(todo) {
   loader(true);
 
@@ -55,7 +51,6 @@ function addTodo(todo) {
     .finally(() => loader(false));
 }
 
-/* EDIT */
 function editTodo(todo) {
   loader(true);
 
@@ -74,10 +69,8 @@ function editTodo(todo) {
     .finally(() => loader(false));
 }
 
-/* DELETE + EDIT CLICK */
 elTodosContainer.addEventListener('click', (e) => {
 
-  /* DELETE */
   if (e.target.closest('.js-delete')) {
     const id = +e.target.closest('.js-delete').dataset.id;
 
@@ -91,7 +84,6 @@ elTodosContainer.addEventListener('click', (e) => {
       .finally(() => loader(false));
   }
 
-  /* EDIT */
   if (e.target.closest('.js-edit')) {
     const id = +e.target.closest('.js-edit').dataset.id;
     const todo = state.find(t => t.id === id);
